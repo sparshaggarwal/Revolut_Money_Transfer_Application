@@ -5,11 +5,11 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 public class Customer {
 
 	@JsonProperty(required = true)
-    private long userId ;
+    private long customerId ;
 
 
     @JsonProperty(required = true)
-    private String userName;
+    private String customerName;
 
     
     @JsonProperty(required = true)
@@ -22,23 +22,23 @@ public class Customer {
     public Customer() {}
 
     public Customer(String userName, String emailAddress) {
-        this.userName = userName;
+        this.customerName = userName;
         this.emailAddress = emailAddress;
     }
 
     public Customer(long userId, String userName, long contactNumber, String emailAddress) {
-        this.userId = userId;
-        this.userName = userName;
+        this.customerId = userId;
+        this.customerName = userName;
         this.contactNumber = contactNumber;
         this.emailAddress = emailAddress;
     }
 
-    public long getUserId() {
-        return userId;
+    public long getCustomerId() {
+        return customerId;
     }
 
-    public String getUserName() {
-        return userName;
+    public String getCustomerName() {
+        return customerName;
     }
 
     public String getEmailAddress() {
@@ -51,8 +51,8 @@ public class Customer {
 		int result = 1;
 		result = prime * result + (int) (contactNumber ^ (contactNumber >>> 32));
 		result = prime * result + ((emailAddress == null) ? 0 : emailAddress.hashCode());
-		result = prime * result + (int) (userId ^ (userId >>> 32));
-		result = prime * result + ((userName == null) ? 0 : userName.hashCode());
+		result = prime * result + (int) (customerId ^ (customerId >>> 32));
+		result = prime * result + ((customerName == null) ? 0 : customerName.hashCode());
 		return result;
 	}
 
@@ -72,19 +72,19 @@ public class Customer {
 				return false;
 		} else if (!emailAddress.equals(other.emailAddress))
 			return false;
-		if (userId != other.userId)
+		if (customerId != other.customerId)
 			return false;
-		if (userName == null) {
-			if (other.userName != null)
+		if (customerName == null) {
+			if (other.customerName != null)
 				return false;
-		} else if (!userName.equals(other.userName))
+		} else if (!customerName.equals(other.customerName))
 			return false;
 		return true;
 	}
 
 	@Override
 	public String toString() {
-		return "Customer [userId=" + userId + ", userName=" + userName + ", contactNumber=" + contactNumber
+		return "Customer [userId=" + customerId + ", customerName=" + customerName + ", contactNumber=" + contactNumber
 				+ ", emailAddress=" + emailAddress + "]";
 	}
 

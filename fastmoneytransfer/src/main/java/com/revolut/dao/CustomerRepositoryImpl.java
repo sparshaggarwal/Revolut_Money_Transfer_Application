@@ -79,7 +79,7 @@ public class CustomerRepositoryImpl implements CustomerRepository {
         try {
         	connection = H2Database.getConnection();
             stmt = connection.prepareStatement(QueryConstants.SQL_INSERT_USER, Statement.RETURN_GENERATED_KEYS);
-            stmt.setString(1, user.getUserName());
+            stmt.setString(1, user.getCustomerName());
             stmt.setLong(2, user.getContactNumber());
             stmt.setString(3, user.getEmailAddress());
             int affectedRows = stmt.executeUpdate();

@@ -45,7 +45,7 @@ public class CustomerService {
     @POST
     @Path("/create")
     public Customer createUser(Customer user) throws FastMoneyTransferApplicationException {
-        if (daoFactory.getCustomerRespository().getCustomerById(user.getUserId()) != null) {
+        if (daoFactory.getCustomerRespository().getCustomerById(user.getCustomerId()) != null) {
             throw new WebApplicationException("User name already exist", Response.Status.BAD_REQUEST);
         }
         final long uId = daoFactory.getCustomerRespository().insertCustomer(user);
