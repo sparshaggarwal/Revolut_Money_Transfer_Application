@@ -1,0 +1,129 @@
+2019-08-05 23:28:31,730 [main] [INFO ] [FastMoneyTransferApplication] Creating tables with some sample data
+2019-08-05 23:28:31,745 [main] [INFO ] [Utils] loadConfig(): Loading config file: application.properties
+2019-08-05 23:28:31,745 [main] [INFO ] [H2DatabaseFactory] Populating Test User Table and data ..... 
+2019-08-05 23:28:32,093 [main] [INFO ] [FastMoneyTransferApplication] Initialisation Complete....
+2019-08-05 23:28:37,173 [qtp2131670196-20] [DEBUG] [AccountRepositoryImpl] Account Details --> Account [accountId=1, userName=sparsh, balance=100.0000]
+2019-08-05 23:28:37,174 [qtp2131670196-20] [DEBUG] [AccountRepositoryImpl] Account Details --> Account [accountId=2, userName=Paul, balance=200.0000]
+2019-08-05 23:34:28,701 [qtp2131670196-19] [DEBUG] [AccountRepositoryImpl] Account Details --> Account [accountId=1, userName=sparsh, balance=100.0000]
+2019-08-05 23:34:28,701 [qtp2131670196-19] [DEBUG] [AccountRepositoryImpl] Account Details --> Account [accountId=2, userName=Paul, balance=200.0000]
+2019-08-05 23:34:43,387 [main] [INFO ] [FastMoneyTransferApplication] Creating tables with some sample data
+2019-08-05 23:34:43,398 [main] [INFO ] [Utils] loadConfig(): Loading config file: application.properties
+2019-08-05 23:34:43,411 [main] [INFO ] [H2DatabaseFactory] Populating Test User Table and data ..... 
+2019-08-05 23:34:43,795 [main] [INFO ] [FastMoneyTransferApplication] Initialisation Complete....
+2019-08-05 23:34:53,736 [qtp2131670196-23] [DEBUG] [AccountRepositoryImpl] Account Details --> Account [accountId=1, userName=sparsh, balance=100.0000]
+2019-08-05 23:34:53,736 [qtp2131670196-23] [DEBUG] [AccountRepositoryImpl] Account Details --> Account [accountId=2, userName=Paul, balance=200.0000]
+2019-08-05 23:41:43,796 [main] [INFO ] [FastMoneyTransferApplication] Creating tables with some sample data
+2019-08-05 23:41:43,811 [main] [INFO ] [Utils] loadConfig(): Loading config file: application.properties
+2019-08-05 23:41:43,827 [main] [INFO ] [H2DatabaseFactory] Populating Test User Table and data ..... 
+2019-08-05 23:41:44,162 [main] [ERROR] [H2DatabaseFactory] populateTestData(): Error populating user data: 
+org.h2.jdbc.JdbcSQLException: Table "USER" not found; SQL statement:
+
+
+CREATE TABLE Account (AccountId LONG PRIMARY KEY AUTO_INCREMENT NOT NULL,
+UserId VARCHAR(30),
+Balance DECIMAL(19,4),
+foreign key (UserId) references User(UserId)
+) [42102-192]
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:345)
+	at org.h2.message.DbException.get(DbException.java:179)
+	at org.h2.message.DbException.get(DbException.java:155)
+	at org.h2.schema.Schema.getTableOrView(Schema.java:436)
+	at org.h2.command.ddl.AlterTableAddConstraint.tryUpdate(AlterTableAddConstraint.java:201)
+	at org.h2.command.ddl.AlterTableAddConstraint.update(AlterTableAddConstraint.java:77)
+	at org.h2.command.ddl.CreateTable.update(CreateTable.java:176)
+	at org.h2.command.CommandContainer.update(CommandContainer.java:98)
+	at org.h2.command.Command.executeUpdate(Command.java:258)
+	at org.h2.jdbc.JdbcStatement.executeInternal(JdbcStatement.java:184)
+	at org.h2.jdbc.JdbcStatement.execute(JdbcStatement.java:158)
+	at org.h2.tools.RunScript.execute(RunScript.java:170)
+	at com.revolut.dao.H2DatabaseFactory.populateTestData(H2DatabaseFactory.java:52)
+	at com.revolut.fastmoneytransfer.FastMoneyTransferApplication.main(FastMoneyTransferApplication.java:22)
+2019-08-05 23:42:34,205 [main] [INFO ] [FastMoneyTransferApplication] Creating tables with some sample data
+2019-08-05 23:42:34,205 [main] [INFO ] [Utils] loadConfig(): Loading config file: application.properties
+2019-08-05 23:42:34,221 [main] [INFO ] [H2DatabaseFactory] Populating Test User Table and data ..... 
+2019-08-05 23:42:34,601 [main] [ERROR] [H2DatabaseFactory] populateTestData(): Error populating user data: 
+org.h2.jdbc.JdbcSQLException: Column "USERNAME" not found; SQL statement:
+
+
+INSERT INTO Account (UserName,Balance) VALUES ('sparsh',100.0000) [42122-192]
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:345)
+	at org.h2.message.DbException.get(DbException.java:179)
+	at org.h2.message.DbException.get(DbException.java:155)
+	at org.h2.table.Table.getColumn(Table.java:682)
+	at org.h2.command.Parser.parseColumn(Parser.java:878)
+	at org.h2.command.Parser.parseColumnList(Parser.java:862)
+	at org.h2.command.Parser.parseInsert(Parser.java:1062)
+	at org.h2.command.Parser.parsePrepared(Parser.java:413)
+	at org.h2.command.Parser.parse(Parser.java:317)
+	at org.h2.command.Parser.parse(Parser.java:289)
+	at org.h2.command.Parser.prepareCommand(Parser.java:254)
+	at org.h2.engine.Session.prepareLocal(Session.java:560)
+	at org.h2.engine.Session.prepareCommand(Session.java:501)
+	at org.h2.jdbc.JdbcConnection.prepareCommand(JdbcConnection.java:1202)
+	at org.h2.jdbc.JdbcStatement.executeInternal(JdbcStatement.java:170)
+	at org.h2.jdbc.JdbcStatement.execute(JdbcStatement.java:158)
+	at org.h2.tools.RunScript.execute(RunScript.java:170)
+	at com.revolut.dao.H2DatabaseFactory.populateTestData(H2DatabaseFactory.java:52)
+	at com.revolut.fastmoneytransfer.FastMoneyTransferApplication.main(FastMoneyTransferApplication.java:22)
+2019-08-05 23:44:35,498 [main] [INFO ] [FastMoneyTransferApplication] Creating tables with some sample data
+2019-08-05 23:44:35,498 [main] [INFO ] [Utils] loadConfig(): Loading config file: application.properties
+2019-08-05 23:44:35,519 [main] [INFO ] [H2DatabaseFactory] Populating Test User Table and data ..... 
+2019-08-05 23:44:35,874 [main] [ERROR] [H2DatabaseFactory] populateTestData(): Error populating user data: 
+org.h2.jdbc.JdbcSQLException: Referential integrity constraint violation: "CONSTRAINT_E4: PUBLIC.ACCOUNT FOREIGN KEY(USERID) REFERENCES PUBLIC.USER(USERID) (1)"; SQL statement:
+
+
+INSERT INTO Account (UserId,Balance) VALUES (1,100.0000) [23506-192]
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:345)
+	at org.h2.message.DbException.get(DbException.java:179)
+	at org.h2.message.DbException.get(DbException.java:155)
+	at org.h2.constraint.ConstraintReferential.checkRowOwnTable(ConstraintReferential.java:372)
+	at org.h2.constraint.ConstraintReferential.checkRow(ConstraintReferential.java:314)
+	at org.h2.table.Table.fireConstraints(Table.java:967)
+	at org.h2.table.Table.fireAfterRow(Table.java:985)
+	at org.h2.command.dml.Insert.insertRows(Insert.java:161)
+	at org.h2.command.dml.Insert.update(Insert.java:114)
+	at org.h2.command.CommandContainer.update(CommandContainer.java:98)
+	at org.h2.command.Command.executeUpdate(Command.java:258)
+	at org.h2.jdbc.JdbcStatement.executeInternal(JdbcStatement.java:184)
+	at org.h2.jdbc.JdbcStatement.execute(JdbcStatement.java:158)
+	at org.h2.tools.RunScript.execute(RunScript.java:170)
+	at com.revolut.dao.H2DatabaseFactory.populateTestData(H2DatabaseFactory.java:52)
+	at com.revolut.fastmoneytransfer.FastMoneyTransferApplication.main(FastMoneyTransferApplication.java:22)
+2019-08-05 23:45:32,280 [main] [INFO ] [FastMoneyTransferApplication] Creating tables with some sample data
+2019-08-05 23:45:32,296 [main] [INFO ] [Utils] loadConfig(): Loading config file: application.properties
+2019-08-05 23:45:32,317 [main] [INFO ] [H2DatabaseFactory] Populating Test User Table and data ..... 
+2019-08-05 23:45:32,702 [main] [INFO ] [FastMoneyTransferApplication] Initialisation Complete....
+2019-08-05 23:57:15,028 [main] [INFO ] [FastMoneyTransferApplication] Creating tables with some sample data
+2019-08-05 23:57:15,038 [main] [INFO ] [Utils] loadConfig(): Loading config file: application.properties
+2019-08-05 23:57:15,051 [main] [INFO ] [H2DatabaseFactory] Populating Test User Table and data ..... 
+2019-08-05 23:57:15,453 [main] [INFO ] [FastMoneyTransferApplication] Initialisation Complete....
+2019-08-05 23:57:30,351 [qtp883151184-18] [DEBUG] [AccountRepositoryImpl] Account Details --> Account [accountId=1, userId=1, balance=100.0000]
+2019-08-05 23:57:30,351 [qtp883151184-18] [DEBUG] [AccountRepositoryImpl] Account Details --> Account [accountId=2, userId=2, balance=200.0000]
+2019-08-06 00:00:10,716 [qtp883151184-20] [ERROR] [AccountRepositoryImpl] Error Inserting Account  Account [accountId=0, userId=3, balance=600]
+2019-08-06 00:02:31,065 [qtp883151184-21] [ERROR] [CustomerRepositoryImpl] Error Inserting User :Customer [userId=3, userName=James, contactNumber=956862588, emailAddress=james@revolut.com]
+2019-08-06 00:02:38,230 [qtp883151184-22] [ERROR] [CustomerRepositoryImpl] Error Inserting User :Customer [userId=0, userName=James, contactNumber=956862588, emailAddress=james@revolut.com]
+2019-08-06 00:03:24,632 [main] [INFO ] [FastMoneyTransferApplication] Creating tables with some sample data
+2019-08-06 00:03:24,641 [main] [INFO ] [Utils] loadConfig(): Loading config file: application.properties
+2019-08-06 00:03:24,651 [main] [INFO ] [H2DatabaseFactory] Populating Test User Table and data ..... 
+2019-08-06 00:03:25,035 [main] [INFO ] [FastMoneyTransferApplication] Initialisation Complete....
+2019-08-06 00:04:02,282 [main] [INFO ] [FastMoneyTransferApplication] Creating tables with some sample data
+2019-08-06 00:04:02,298 [main] [INFO ] [Utils] loadConfig(): Loading config file: application.properties
+2019-08-06 00:04:02,314 [main] [INFO ] [H2DatabaseFactory] Populating Test User Table and data ..... 
+2019-08-06 00:04:02,659 [main] [INFO ] [FastMoneyTransferApplication] Initialisation Complete....
+2019-08-06 00:04:21,448 [qtp883151184-21] [ERROR] [CustomerRepositoryImpl] Error Inserting User :Customer [userId=0, userName=James, contactNumber=956862588, emailAddress=james@revolut.com]
+2019-08-06 00:04:52,729 [qtp883151184-19] [DEBUG] [CustomerRepositoryImpl] getUserById(): Retrieve User: Customer [userId=3, userName=James, contactNumber=956862588, emailAddress=james@revolut.com]
+2019-08-06 00:05:03,471 [qtp883151184-23] [DEBUG] [AccountRepositoryImpl] Account Details --> Account [accountId=3, userId=3, balance=600.0000]
+2019-08-06 00:05:20,606 [qtp883151184-21] [DEBUG] [AccountRepositoryImpl] Account Details --> Account [accountId=1, userId=1, balance=100.0000]
+2019-08-06 00:05:20,607 [qtp883151184-21] [DEBUG] [AccountRepositoryImpl] Account Details --> Account [accountId=2, userId=2, balance=200.0000]
+2019-08-06 00:05:20,607 [qtp883151184-21] [DEBUG] [AccountRepositoryImpl] Account Details --> Account [accountId=3, userId=3, balance=600.0000]
+2019-08-06 00:05:54,242 [qtp883151184-22] [DEBUG] [AccountRepositoryImpl] transferAccountBalance from Account: Account [accountId=3, userId=3, balance=600.0000]
+2019-08-06 00:05:54,242 [qtp883151184-22] [DEBUG] [AccountRepositoryImpl] transferAccountBalance to Account: Account [accountId=1, userId=1, balance=100.0000]
+2019-08-06 00:06:00,109 [qtp883151184-20] [DEBUG] [AccountRepositoryImpl] Account Details --> Account [accountId=1, userId=1, balance=200.0000]
+2019-08-06 00:06:00,109 [qtp883151184-20] [DEBUG] [AccountRepositoryImpl] Account Details --> Account [accountId=2, userId=2, balance=200.0000]
+2019-08-06 00:06:00,109 [qtp883151184-20] [DEBUG] [AccountRepositoryImpl] Account Details --> Account [accountId=3, userId=3, balance=500.0000]
+2019-08-06 12:32:35,222 [main] [INFO ] [FastMoneyTransferApplication] Creating tables with some sample data
+2019-08-06 12:32:35,284 [main] [INFO ] [Utils] loadConfig(): Loading config file: application.properties
+2019-08-06 12:32:35,347 [main] [INFO ] [H2Database] Populating Data 
+2019-08-06 12:32:35,938 [main] [INFO ] [FastMoneyTransferApplication] Initialisation Complete....
+2019-08-06 12:33:04,989 [qtp348984985-21] [DEBUG] [AccountRepositoryImpl] Account Details --> Account [accountId=1, userId=1, balance=100.0000]
+2019-08-06 12:33:04,989 [qtp348984985-21] [DEBUG] [AccountRepositoryImpl] Account Details --> Account [accountId=2, userId=2, balance=200.0000]

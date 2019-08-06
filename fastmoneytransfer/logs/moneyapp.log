@@ -1,0 +1,2 @@
+2019-08-04 18:01:39,257 [qtp2131670196-19] [ERROR] [AccountDAOImpl] Error Inserting Account  Account [accountId=0, userName=Jack, balance=300.0000]
+2019-08-04 18:05:33,602 [qtp2131670196-22] [ERROR] [AccountDAOImpl] Error Inserting Account  Account [accountId=0, userName=Jack, balance=300.0000]
