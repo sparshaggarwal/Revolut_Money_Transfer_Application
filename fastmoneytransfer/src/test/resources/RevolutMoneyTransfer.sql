@@ -19,6 +19,6 @@ CREATE UNIQUE INDEX index_account on Account(AccountId);
 INSERT INTO User (UserName,ContactNumber, EmailAddress) VALUES ('sparsh', 8329461203, 'Sparsh@yahoo.com');
 INSERT INTO User (UserName,ContactNumber, EmailAddress) VALUES ('paul',1234567890, 'Paul@rediff.com');
 
-INSERT INTO Account (UserId,Balance) VALUES (1,100.0000);
-INSERT INTO Account (UserId,Balance) VALUES (2,200.0000);
+INSERT INTO Account (UserId,Balance) VALUES (1,1000.0000);
+INSERT INTO Account (UserId,Balance) VALUES (2,2000.0000);
 

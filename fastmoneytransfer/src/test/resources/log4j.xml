@@ -3,7 +3,7 @@
 <log4j:configuration>
 
     <appender class="org.apache.log4j.RollingFileAppender" name="FILE">
-        <param name="File" value="logs/moneyapp.log" />
+        <param name="File" value="logs/RevolutMoneyTransferApplicationTest.log" />
         <param name="Threshold" value="debug" />
         <param name="Append" value="true" />
         <param name="MaxFileSize" value="5MB" />

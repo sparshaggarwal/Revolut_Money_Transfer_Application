@@ -9,7 +9,7 @@ import javax.ws.rs.core.Response;
 
 import com.revolut.dao.DataAccessObjectFactory;
 import com.revolut.exception.FastMoneyTransferApplicationException;
-import com.revolut.models.UserTransaction;
+import com.revolut.models.CustomerTransaction;
 
 @Path("/transaction")
 @Produces(MediaType.APPLICATION_JSON)
@@ -26,7 +26,7 @@ public class TransactionService {
 	 * @throws FastMoneyTransferApplicationException
 	 */
 	@POST
-	public Response transferFund(UserTransaction transaction) throws FastMoneyTransferApplicationException {
+	public Response transferFund(CustomerTransaction transaction) throws FastMoneyTransferApplicationException {
 		
 		if(transaction.getFromAccountId().compareTo(transaction.getToAccountId()) == 0){
 			throw new WebApplicationException("Cannot transfer to same account", Response.Status.BAD_REQUEST);

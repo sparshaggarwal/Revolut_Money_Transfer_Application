@@ -5,7 +5,7 @@ import java.util.List;
 
 import com.revolut.exception.FastMoneyTransferApplicationException;
 import com.revolut.models.Account;
-import com.revolut.models.UserTransaction;
+import com.revolut.models.CustomerTransaction;
 
 /**
  * The Account Repository interface which defines the methods/specifies the contract
@@ -60,5 +60,5 @@ public interface AccountRepository {
      * @return
      * @throws FastMoneyTransferApplicationException
      */
-    Boolean transferMoney(UserTransaction userTransaction) throws FastMoneyTransferApplicationException;
+    Boolean transferMoney(CustomerTransaction userTransaction) throws FastMoneyTransferApplicationException;
 }

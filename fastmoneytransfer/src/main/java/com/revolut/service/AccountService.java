@@ -120,8 +120,7 @@ public class AccountService {
             throw new WebApplicationException("Invalid Deposit amount", Response.Status.BAD_REQUEST);
         }
         BigDecimal delta = amount.negate();
-        if (log.isDebugEnabled())
-            log.debug("Withdraw service: delta change to account  " + delta + " Account ID = " +accountId);
+        log.debug("Withdraw service: delta change to account  " + delta + " Account ID = " +accountId);
         daoFactory.getAccountRepository().updateAccountBalance(accountId,delta.setScale(4, RoundingMode.HALF_EVEN));
         return daoFactory.getAccountRepository().findAccountById(accountId);
     }
