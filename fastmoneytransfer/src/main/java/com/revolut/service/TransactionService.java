@@ -7,7 +7,8 @@ import javax.ws.rs.WebApplicationException;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
-import com.revolut.dao.DataAccessObjectFactory;
+import com.revolut.dao.DatabaseObject;
+import com.revolut.dao.DatabaseObjectFactory;
 import com.revolut.exception.FastMoneyTransferApplicationException;
 import com.revolut.models.CustomerTransaction;
 
@@ -15,7 +16,7 @@ import com.revolut.models.CustomerTransaction;
 @Produces(MediaType.APPLICATION_JSON)
 public class TransactionService {
 
-	private final DataAccessObjectFactory daoFactory = DataAccessObjectFactory
+	private final DatabaseObject h2 = DatabaseObjectFactory
 			.getDatabase("H2");
 
 	/**
@@ -31,7 +32,7 @@ public class TransactionService {
 		if(transaction.getFromAccountId().compareTo(transaction.getToAccountId()) == 0){
 			throw new WebApplicationException("Cannot transfer to same account", Response.Status.BAD_REQUEST);
 		}
-		if (daoFactory.getAccountRepository().transferMoney(transaction)) {
+		if (h2.getAccountRepository().transferMoney(transaction)) {
 			return Response.status(Response.Status.OK).build();
 		} else {
 			throw new WebApplicationException("Transaction failed", Response.Status.BAD_REQUEST);

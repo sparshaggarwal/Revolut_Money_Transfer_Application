@@ -16,7 +16,8 @@ import javax.ws.rs.core.Response;
 
 import org.apache.log4j.Logger;
 
-import com.revolut.dao.DataAccessObjectFactory;
+import com.revolut.dao.DatabaseObject;
+import com.revolut.dao.DatabaseObjectFactory;
 import com.revolut.exception.FastMoneyTransferApplicationException;
 import com.revolut.models.Account;
 import com.revolut.models.MoneyUtil;
@@ -28,7 +29,7 @@ import com.revolut.models.MoneyUtil;
 @Produces(MediaType.APPLICATION_JSON)
 public class AccountService {
 	
-    private final DataAccessObjectFactory daoFactory = DataAccessObjectFactory.getDatabase("H2");
+    private final DatabaseObject daoFactory = DatabaseObjectFactory.getDatabase("H2");
     
     private static Logger log = Logger.getLogger(AccountService.class);
 

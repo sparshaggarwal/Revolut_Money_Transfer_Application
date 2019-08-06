@@ -16,7 +16,7 @@ import com.revolut.utility.Utility;
 /**
  * H2 DAO
  */
-public class H2Database extends DataAccessObjectFactory {
+public class H2Database implements DatabaseObject {
 	private static final String h2_driver = Utility.getStringProperty("h2_driver");
 	private static final String h2_connection_url = Utility.getStringProperty("h2_connection_url");
 	private static final String h2_user = Utility.getStringProperty("h2_user");

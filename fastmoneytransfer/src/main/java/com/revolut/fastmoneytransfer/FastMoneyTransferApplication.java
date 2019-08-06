@@ -6,11 +6,12 @@ import org.eclipse.jetty.servlet.ServletContextHandler;
 import org.eclipse.jetty.servlet.ServletHolder;
 import org.glassfish.jersey.servlet.ServletContainer;
 
-import com.revolut.dao.DataAccessObjectFactory;
+import com.revolut.dao.DatabaseObject;
+import com.revolut.dao.DatabaseObjectFactory;
 import com.revolut.service.AccountService;
+import com.revolut.service.CustomerService;
 import com.revolut.service.ServiceExceptionMapper;
 import com.revolut.service.TransactionService;
-import com.revolut.service.CustomerService;
 
 public class FastMoneyTransferApplication {
 	
@@ -18,10 +19,9 @@ public class FastMoneyTransferApplication {
 
 	public static void main(String[] args) throws Exception {
 		log.info("Creating tables with some sample data");
-		DataAccessObjectFactory h2DaoFactory = DataAccessObjectFactory.getDatabase("H2");
-		h2DaoFactory.populateTestData();
+		DatabaseObject h2 = DatabaseObjectFactory.getDatabase("H2");
+		h2.populateTestData();
 		log.info("Initialisation Complete....");
-		// Host service on jetty
 		startService();
 	}
 

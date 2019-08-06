@@ -134,7 +134,7 @@ public class AccountRepositoryImpl implements AccountRepository {
 	 */
 	public int updateAccountBalance(long accountId, BigDecimal deltaAmount)
 			throws FastMoneyTransferApplicationException {
-		PreparedStatement accountDetailStatement = null;
+		PreparedStatement lockStmt = null;
 		PreparedStatement updateStmt = null;
 		ResultSet rs = null;
 		Account targetAccount = null;
@@ -142,13 +142,15 @@ public class AccountRepositoryImpl implements AccountRepository {
 		try {
 			connection = H2Database.getConnection();
 			connection.setAutoCommit(false);
-			accountDetailStatement = connection.prepareStatement(QueryConstants.GET_ACCONT_QUERY);
-			accountDetailStatement.setLong(1, accountId);
-			rs = accountDetailStatement.executeQuery();
+			// lock account for writing:
+			lockStmt = connection.prepareStatement(QueryConstants.LOCK_ACCOUNT_QUERY);
+			lockStmt.setLong(1, accountId);
+			rs = lockStmt.executeQuery();
 			if (rs.next()) {
 				targetAccount = new Account(rs.getLong("AccountId"), rs.getLong("UserId"),
 						rs.getBigDecimal("Balance"));
-				log.debug("updateAccountBalance from Account: " + targetAccount);
+				if (log.isDebugEnabled())
+					log.debug("updateAccountBalance from Account: " + targetAccount);
 			}
 
 			if (targetAccount == null) {
@@ -179,7 +181,7 @@ public class AccountRepositoryImpl implements AccountRepository {
 				throw new FastMoneyTransferApplicationException("Fail to rollback transaction", re);
 			}
 		} finally {
-			Utility.closeResources(rs, accountDetailStatement, connection);
+			Utility.closeResources(rs, lockStmt, connection);
 			Utility.closeStatement(updateStmt);
 		}
 		return updateCount;
@@ -191,7 +193,7 @@ public class AccountRepositoryImpl implements AccountRepository {
 	public Boolean transferMoney(CustomerTransaction userTransaction) throws FastMoneyTransferApplicationException {
 		int result = -1;
 		Connection conn = null;
-		PreparedStatement accountDetailStatement = null;
+		PreparedStatement lockStmt = null;
 		PreparedStatement updateStmt = null;
 		ResultSet rs = null;
 		Account fromAccount = null;
@@ -200,20 +202,17 @@ public class AccountRepositoryImpl implements AccountRepository {
 		try {
 			conn = H2Database.getConnection();
 			conn.setAutoCommit(false);
-			accountDetailStatement = conn.prepareStatement(QueryConstants.GET_ACCONT_QUERY);
-			accountDetailStatement.setLong(1, userTransaction.getFromAccountId());
-			rs = accountDetailStatement.executeQuery();
+			lockStmt = conn.prepareStatement(QueryConstants.LOCK_ACCOUNT_QUERY);
+			lockStmt.setLong(1, userTransaction.getFromAccountId());
+			rs = lockStmt.executeQuery();
 			if (rs.next()) {
 				fromAccount = new Account(rs.getLong(ApplicationConstants.ACCOUNTID), rs.getLong(ApplicationConstants.USERID),
-					rs.getBigDecimal(ApplicationConstants.BALANCE));
-			log.debug("Balance would be decuted from Account " + fromAccount);
+						rs.getBigDecimal(ApplicationConstants.BALANCE));
+			log.debug("transferAccountBalance from Account: " + fromAccount);
 			}
-			BigDecimal leftOverBalance = fromAccount.getBalance().subtract(userTransaction.getAmount());
-			if (leftOverBalance.compareTo(MoneyUtil.zeroAmount) < 0) {
-				throw new FastMoneyTransferApplicationException("Not enough Money");
-			}
-			accountDetailStatement.setLong(1, userTransaction.getToAccountId());
-			rs = accountDetailStatement.executeQuery();
+			lockStmt = conn.prepareStatement(QueryConstants.LOCK_ACCOUNT_QUERY);
+			lockStmt.setLong(1, userTransaction.getToAccountId());
+			rs = lockStmt.executeQuery();
 			if (rs.next()) {
 				toAccount = new Account(rs.getLong("AccountId"), rs.getLong("UserId"), rs.getBigDecimal("Balance"));
 				log.debug("transferAccountBalance to Account: " + toAccount);
@@ -221,8 +220,14 @@ public class AccountRepositoryImpl implements AccountRepository {
 			if (fromAccount == null || toAccount == null) {
 				throw new FastMoneyTransferApplicationException("Fail to lock both accounts for write");
 			}
+
+			BigDecimal balanceInFromAccount = fromAccount.getBalance().subtract(userTransaction.getAmount());
+			if (balanceInFromAccount.compareTo(MoneyUtil.zeroAmount) < 0) {
+				throw new FastMoneyTransferApplicationException("Not enough Money");
+			}
+			// proceed with update
 			updateStmt = conn.prepareStatement(QueryConstants.UPDATE_ACCOUNT_BALANCE_QUERY);
-			updateStmt.setBigDecimal(1, leftOverBalance);
+			updateStmt.setBigDecimal(1, balanceInFromAccount);
 			updateStmt.setLong(2, userTransaction.getFromAccountId());
 			updateStmt.addBatch();
 			updateStmt.setBigDecimal(1, toAccount.getBalance().add(userTransaction.getAmount()));
@@ -234,7 +239,8 @@ public class AccountRepositoryImpl implements AccountRepository {
 			}
 			conn.commit();
 		} catch (SQLException se) {
-			log.error("Roll back" + userTransaction,
+			// rollback transaction if exception occurs
+			log.error("transferAccountBalance(): User Transaction Failed, rollback initiated for: " + userTransaction,
 					se);
 			try {
 				if (conn != null)
@@ -243,10 +249,12 @@ public class AccountRepositoryImpl implements AccountRepository {
 				throw new FastMoneyTransferApplicationException("Fail to rollback transaction", re);
 			}
 		} finally {
-			Utility.closeResources(rs, accountDetailStatement, conn);
+			Utility.closeResources(rs, lockStmt, conn);
 			Utility.closeStatement(updateStmt);
 		}
 		return true;
 	}
 
 }
+
+
