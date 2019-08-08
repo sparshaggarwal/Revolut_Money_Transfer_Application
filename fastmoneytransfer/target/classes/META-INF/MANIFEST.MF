@@ -1,19 +1,19 @@
 Manifest-Version: 1.0
 Built-By: Sparsh Agarwal
-Class-Path: jetty-server-9.3.24.v20180605.jar javax.servlet-api-3.1.0.
- jar jetty-http-9.3.24.v20180605.jar jetty-util-9.3.24.v20180605.jar j
- etty-io-9.3.24.v20180605.jar jetty-servlet-9.3.24.v20180605.jar jetty
- -security-9.3.24.v20180605.jar log4j-1.2.17.jar jackson-annotations-2
- .8.4.jar jackson-jaxrs-json-provider-2.8.4.jar jackson-jaxrs-base-2.8
- .4.jar jackson-core-2.8.4.jar jackson-databind-2.8.4.jar jackson-modu
- le-jaxb-annotations-2.8.4.jar h2-1.4.192.jar commons-dbutils-1.6.jar 
- jersey-server-2.7.jar jersey-common-2.7.jar jersey-guava-2.7.jar osgi
- -resource-locator-1.0.1.jar jersey-client-2.7.jar javax.ws.rs-api-2.0
- .jar javax.annotation-api-1.2.jar hk2-api-2.2.0.jar hk2-utils-2.2.0.j
- ar aopalliance-repackaged-2.2.0.jar javax.inject-2.2.0.jar hk2-locato
- r-2.2.0.jar javassist-3.18.1-GA.jar validation-api-1.1.0.Final.jar je
- rsey-container-servlet-core-2.7.jar jersey-container-jetty-http-2.7.j
- ar jetty-continuation-9.1.1.v20140108.jar
+Class-Path: jetty-server-9.2.3.v20140905.jar javax.servlet-api-3.1.0.j
+ ar jetty-http-9.2.3.v20140905.jar jetty-util-9.2.3.v20140905.jar jett
+ y-io-9.2.3.v20140905.jar jetty-servlet-9.2.3.v20140905.jar jetty-secu
+ rity-9.2.3.v20140905.jar log4j-1.2.17.jar jackson-annotations-2.8.4.j
+ ar jackson-jaxrs-json-provider-2.8.4.jar jackson-jaxrs-base-2.8.4.jar
+  jackson-core-2.8.4.jar jackson-databind-2.8.4.jar jackson-module-jax
+ b-annotations-2.8.4.jar h2-1.4.192.jar commons-dbutils-1.6.jar jersey
+ -server-2.7.jar jersey-common-2.7.jar jersey-guava-2.7.jar osgi-resou
+ rce-locator-1.0.1.jar jersey-client-2.7.jar javax.ws.rs-api-2.0.jar j
+ avax.annotation-api-1.2.jar hk2-api-2.2.0.jar hk2-utils-2.2.0.jar aop
+ alliance-repackaged-2.2.0.jar javax.inject-2.2.0.jar hk2-locator-2.2.
+ 0.jar javassist-3.18.1-GA.jar validation-api-1.1.0.Final.jar jersey-c
+ ontainer-servlet-core-2.7.jar jersey-container-jetty-http-2.7.jar jet
+ ty-continuation-9.1.1.v20140108.jar
 Build-Jdk: 1.8.0_11
 Created-By: Maven Integration for Eclipse
 Main-Class: com.moneytransfer.Application

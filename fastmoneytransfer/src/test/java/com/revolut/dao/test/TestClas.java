@@ -21,7 +21,7 @@ import static junit.framework.TestCase.assertTrue;
 public class TestClas {
 
 	
-	private static DatabaseObject h2Object = null;
+	/*private static DatabaseObject h2Object = null;
 	
 	private static CustomerRepository customerRepository = null;
 	
@@ -68,6 +68,6 @@ public class TestClas {
 	public void deleteCustomerTest() throws FastMoneyTransferApplicationException {
 		customerRepository.deleteCustomer(1L);
 		assertTrue(customerRepository.getCustomers().size()==2);
-	}
+	}*/
 
 }

@@ -26,7 +26,11 @@ public class FastMoneyTransferApplication {
 	}
 
 	private static void startService() throws Exception {
-		Server server = new Server(8080);
+		String port = System.getenv("PORT");
+		if(port == null || port.isEmpty()){
+			port="8081";
+		}
+		Server server = new Server(Integer.parseInt(port));
 		ServletContextHandler context = new ServletContextHandler(ServletContextHandler.SESSIONS);
 		context.setContextPath("/revolut");
 		server.setHandler(context);
